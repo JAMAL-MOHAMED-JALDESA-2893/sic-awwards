@@ -12,3 +12,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Profile,Projects,Revieww
 from .serializer import ProfileSerializer,ProjectSerializer
+
+#routing functions
+
+def index(request):
+    projects = Projects.objects.all()
+    return render(request,'index.html',{"projects":projects})
