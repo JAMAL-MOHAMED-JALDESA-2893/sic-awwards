@@ -58,3 +58,7 @@ def addProject(request):
         form = projectForm()
     return render(request,'newProject.html',{'form':form})    
          
+
+def profile(request,id):
+    prof = Profile.objects.get(user = id)
+    return render(request,'profile.html',{"profile":prof})
