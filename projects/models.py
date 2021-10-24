@@ -35,3 +35,10 @@ class Projects(models.Model):
     projecturl= models.URLField(max_length=200)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, default='', null=True ,related_name='author')
     datecreated= models.DateField(auto_now_add=True )
+
+
+    def save_projects(self):
+        self.user
+
+    def delete_projects(self):
+        self.delete()    
