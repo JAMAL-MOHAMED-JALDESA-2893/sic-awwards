@@ -76,17 +76,17 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 # Application definition
 
 INSTALLED_APPS = [
-    'projects',
-    'cloudinary',
-    'rest_framework',
-    'bootstrap3',
-     'star_ratings',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'projects',
+    'cloudinary',
+    'rest_framework',
+    'bootstrap3',
+    'star_ratings',
 ]
 
 MIDDLEWARE = [
@@ -195,8 +195,6 @@ cloudinary.config(
   api_key = "943276256896651", 
   api_secret = "cNswEUjt2W1OzESAFSuL3EtxXuE", 
 )
-
-
 
 
 # Configure Django App for Heroku.
