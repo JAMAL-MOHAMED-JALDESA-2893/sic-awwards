@@ -96,3 +96,8 @@ def searchprofile(request):
     else:
         message = "You haven't searched for any profile"
     return render(request, 'search.html', {'message': message})
+
+
+def projects(request,id):
+    proj = Projects.objects.get(id = id)
+    return render(request,'readmore.html',{"projects":proj})    
