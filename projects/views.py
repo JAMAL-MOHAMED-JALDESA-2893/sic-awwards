@@ -40,4 +40,21 @@ def register(request):
         'form':form,
         'profForm': prof
     }
-    return render(request, 'users/register.html', params)    
+    return render(request, 'users/register.html', params)  
+
+
+@login_required(login_url='login')   
+def addProject(request):
+    current_user = request.user
+    user_profile = Profile.objects.get(user = current_user)
+    if request.method == 'POST':
+        form = projectForm(request.POST,request.FILES)
+        if form.is_valid:
+            newProj = form.save(commit = False)
+            newProj.user = user_profile
+            newProj.save()
+        return redirect('home')  
+    else:
+        form = projectForm()
+    return render(request,'newProject.html',{'form':form})    
+         
