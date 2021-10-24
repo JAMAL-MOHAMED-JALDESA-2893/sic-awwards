@@ -1,21 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
-import datetime as dt
 
 
 # Create your models here.
-
 class Profile(models.Model):
+    photo = CloudinaryField('images')
+    Bio = models.CharField(max_length=30)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    photo = CloudinaryField('image')
-    Bio = models.CharField(max_length=30)    
     contact=models.CharField(max_length=12,null=True)
     datecreated= models.DateField(auto_now_add=True )
-
-    @classmethod
-    def search_profile(cls, name):
-        return cls.objects.filter(user__username__icontains=name).all()
 
     def __str__(self):
         return self.user.username
@@ -26,7 +20,9 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()    
 
-
+    @classmethod
+    def search_profile(cls, name):
+        return cls.objects.filter(user__username__icontains=name).all()
 
 class Projects(models.Model):
     title = models.CharField(max_length=30)
@@ -36,32 +32,29 @@ class Projects(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, default='', null=True ,related_name='author')
     datecreated= models.DateField(auto_now_add=True )
 
-
     def save_projects(self):
         self.user
 
     def delete_projects(self):
-        self.delete() 
+        self.delete()    
+
 
     @classmethod
     def search_projects(cls, name):
-        return cls.objects.filter(title__icontains=name).all() 
-
+        return cls.objects.filter(title__icontains=name).all()
 
 RATE_CHOICES = [
-    (1,'1- Trash'),
-    (2,'2- Horrible'),
-    (3,'3- Terrible'),
-    (4,'4- Bad'),
-    (5,'5- Ok'),
-    (6,'6- Watchable'),
-    (7,'7- Good'),
-    (8,'8- Very Good'),
-    (9,'9- perfect'),
-    (10,'10- Master Piece'),
-    ]  
-
-
+(1,'1- Trash'),
+(2,'2- Horrible'),
+(3,'3- Terrible'),
+(4,'4- Bad'),
+(5,'5- Ok'),
+(6,'6- Watchable'),
+(7,'7- Good'),
+(8,'8- Very Good'),
+(9,'9- perfect'),
+(10,'10- Master Piece'),
+]
 
 class Revieww(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE)
@@ -75,4 +68,7 @@ class Revieww(models.Model):
 
 
     def __str__(self):
-        return self.user.username        
+        return self.user.username
+
+
+

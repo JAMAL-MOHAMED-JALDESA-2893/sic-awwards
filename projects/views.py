@@ -13,8 +13,7 @@ from rest_framework.views import APIView
 from .models import Profile,Projects,Revieww
 from .serializer import ProfileSerializer,ProjectSerializer
 
-#routing functions
-
+# Create your views here.
 def index(request):
     projects = Projects.objects.all()
     return render(request,'index.html',{"projects":projects})
@@ -40,8 +39,21 @@ def register(request):
         'form':form,
         'profForm': prof
     }
-    return render(request, 'users/register.html', params)  
+    return render(request, 'users/register.html', params)
 
+def searchprofile(request):
+    if 'searchUser' in request.GET and request.GET['searchUser']:
+        name = request.GET.get("searchUser")
+        searchResults = Projects.search_projects(name)
+        message = f'name'
+        params = {
+            'results': searchResults,
+            'message': message
+        }
+        return render(request, 'search.html', params)
+    else:
+        message = "You haven't searched for any profile"
+    return render(request, 'search.html', {'message': message})
 
 @login_required(login_url='login')   
 def addProject(request):
@@ -57,12 +69,10 @@ def addProject(request):
     else:
         form = projectForm()
     return render(request,'newProject.html',{'form':form})    
-         
 
 def profile(request,id):
     prof = Profile.objects.get(user = id)
     return render(request,'profile.html',{"profile":prof})
-
 
 def editprofile(request):
     user= request.user
@@ -82,26 +92,21 @@ def editprofile(request):
     }
     return render(request, 'editprofile.html', params)
 
+class ProfileList(APIView):
+    def get(self,request,format = None):
+        all_profile = Profile.objects.all()
+        serializerdata = ProfileSerializer(all_profile,many = True)
+        return Response(serializerdata.data)
 
-def searchprofile(request):
-    if 'searchUser' in request.GET and request.GET['searchUser']:
-        name = request.GET.get("searchUser")
-        searchResults = Projects.search_projects(name)
-        message = f'name'
-        params = {
-            'results': searchResults,
-            'message': message
-        }
-        return render(request, 'search.html', params)
-    else:
-        message = "You haven't searched for any profile"
-    return render(request, 'search.html', {'message': message})
-
+class ProjectList(APIView):
+    def get(self,request,format = None):
+        all_projects = Projects.objects.all()
+        serializerdata = ProjectSerializer(all_projects,many = True)
+        return Response(serializerdata.data)
 
 def projects(request,id):
     proj = Projects.objects.get(id = id)
-    return render(request,'readmore.html',{"projects":proj}) 
-
+    return render(request,'readmore.html',{"projects":proj})
 
 @login_required(login_url='login')   
 def rate(request,id):
@@ -118,4 +123,5 @@ def rate(request,id):
             return redirect('home')
     else:
         form = RateForm()
-    return render(request,"rate.html",{"form":form,"project":project})         
+    return render(request,"rate.html",{"form":form,"project":project})        
+
