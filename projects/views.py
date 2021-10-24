@@ -81,3 +81,18 @@ def editprofile(request):
         'prof_form': prof_form
     }
     return render(request, 'editprofile.html', params)
+
+
+def searchprofile(request):
+    if 'searchUser' in request.GET and request.GET['searchUser']:
+        name = request.GET.get("searchUser")
+        searchResults = Projects.search_projects(name)
+        message = f'name'
+        params = {
+            'results': searchResults,
+            'message': message
+        }
+        return render(request, 'search.html', params)
+    else:
+        message = "You haven't searched for any profile"
+    return render(request, 'search.html', {'message': message})
