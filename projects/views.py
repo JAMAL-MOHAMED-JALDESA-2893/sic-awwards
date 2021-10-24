@@ -100,4 +100,22 @@ def searchprofile(request):
 
 def projects(request,id):
     proj = Projects.objects.get(id = id)
-    return render(request,'readmore.html',{"projects":proj})    
+    return render(request,'readmore.html',{"projects":proj}) 
+
+
+@login_required(login_url='login')   
+def rate(request,id):
+    
+    project = Projects.objects.get(id = id)
+    user = request.user
+    if request.method == 'POST':
+        form = RateForm(request.POST)
+        if form.is_valid():
+            rate = form.save(commit=False)
+            rate.user = user
+            rate.projects = project
+            rate.save()
+            return redirect('home')
+    else:
+        form = RateForm()
+    return render(request,"rate.html",{"form":form,"project":project})         
