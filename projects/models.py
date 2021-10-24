@@ -12,6 +12,9 @@ class Profile(models.Model):
     contact=models.CharField(max_length=12,null=True)
     datecreated= models.DateField(auto_now_add=True )
 
+    @classmethod
+    def search_profile(cls, name):
+        return cls.objects.filter(user__username__icontains=name).all()
 
     def __str__(self):
         return self.user.username
