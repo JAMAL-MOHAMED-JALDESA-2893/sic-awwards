@@ -41,4 +41,8 @@ class Projects(models.Model):
         self.user
 
     def delete_projects(self):
-        self.delete()    
+        self.delete() 
+
+    @classmethod
+    def search_projects(cls, name):
+        return cls.objects.filter(title__icontains=name).all()       
