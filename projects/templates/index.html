@@ -3,14 +3,10 @@
   {%block content%}
   <div class="container-fluid">
 
-      <div class="jumbotron jumbotron-fluid">
-          <div class="container " style="background-image: url('/static/img/love.jpg');">
-              <h2 class="display-4"><b style="color: blue;"><i> Welcome To B-Awwards</i></b></h2>
-              <p class="lead" style="color: black;"><b>Check out other peoples projects, Review and Rate them! You can also post yours to be reviewed!</b>
-              </p>
-          </div>
+      <div class="jumbotron jumbotron-fluid" style="background-image: url('/static/img/5fb55cb448459354334086.jpg'); height: 78vh;">
+          <h1 class="text-white text-centre" style="font-size:75px; text-align:center">sic Awwwards</h1>
       </div>
-      <h3>Sample Projects</h3>
+      <h3 style="text-align: center;">Sample Projects for reviews and rating</h3>
       <div class="row">
           {%for proj in projects%}
           <div class="col-md-3">
@@ -23,7 +19,7 @@
                   </div>
                   <div class="card-body">
                       <h5 class="">{{proj.title}}</h5>
-                      <a href="projects/{{proj.id}}">Readmore</a>
+                      <a href="projects/{{proj.id}}">Rate it</a>
                   </div>
               </div>
           </div>

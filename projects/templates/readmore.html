@@ -22,22 +22,22 @@
                   <h6 class="font-weight-bold indigo-text py-2">Description</h6>
                   <!-- Text -->
                   <p class="card-text">{{projects.description}}
-                  </p>
+                  </p><br>
                   <a href="{{projects.projecturl}}">
-                      <button class="btn btn-primary">Check out</button>
-                  </a>
-                  <h5 style="padding-left: 120%;" class="text-secondary">By: {{projects.user}}</h5>
+                      <button class="btn btn-outline-black">visit project</button>
+                  </a><br>
+                  <h5 style="padding-left: 120%;" class="text-secondary">posted By: {{projects.user}}</h5>
               </div>
           </div>
       </div>
-      <iv class="ratings">
-          <h3 class="pt-3 h2">Rate</h3>
-          <div class="row">
+      <div class="ratings">
+          <h3 class="pt-3 h2">Rate it</h3>
+          
               <div class="col-sm">
                   <h4>Usability</h4>
                   {% ratings projects %}
                   <h4>Usability</h4>
-              </div>
+              </div><br>
               <div class="col-sm">
                   <h4>Design</h4>
                   {% ratings projects %}
@@ -46,8 +46,8 @@
                   <h4>Content</h4>
                   {% ratings projects %}
               </div>
-          </div>
-          <a href="{% url "rate" projects.id %}" class="h1">Review</a>
+         
+          <a href="{% url "rate" projects.id %}" class="h1">add final Review rate</a>
   </div>
   <div>
       {%endblock%}

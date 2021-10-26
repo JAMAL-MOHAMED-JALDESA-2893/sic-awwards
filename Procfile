@@ -1,0 +1,1 @@
+web: gunicorn sicawwards.wsgi --log-file -
