@@ -4,27 +4,27 @@
 **Jamal hassan mohamed**
 
 ### Description
-This is a clone of Instagram where people share their images and videos for other users to view. Users can sign up, login, view and post photos, search and follow other users.
-
+This is a Website application that allows the user to post a project he/she has created and get it reviewed and being rated.
 
 ### User Story
-* Sign in to the application to start using.
-* Upload a pictures to the application.
-* See your profile with all your pictures.
-* Follow other users and see their pictures on my timeline.
+* register and log in
+* View projects posted by other users
+* Post projects
+* Rate a project
+* Edit your profile
+* Generate APIs
 
-## Setup and Installation
 
 ##### Cloning the repository:
     https://github.com/JAMAL-MOHAMED-JALDESA-2893/sic-awwards
 
 ##### Navigate into the folder and install requirements
-    cd -sic-instaClone and  pip install -r requirements.txt 
+    cd -sic-awwards and  pip install -r requirements.txt 
 
 ##### Install and activate Virtual
     python3 -m venv venv - source venv/bin/activate 
 ##### Setup Database
-    python manage.py makemigrations instagram
+    python manage.py makemigrations projects
 ##### Migrate
     python manage.py migrate 
 ##### Run the application
