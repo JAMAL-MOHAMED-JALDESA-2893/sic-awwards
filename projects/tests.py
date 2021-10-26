@@ -5,11 +5,11 @@ from django.contrib.auth.models import User
 
 class ProfileTest(TestCase):
     def setUp(self):
-        self.benard= User(username = 'Benard',email = 'benardakaka484@gmail.com')
-        self.benard = Profile(user = Self.benard,user = 1,Bio = 'tests',photo = 'test.jpg',date_craeted='jan,28.202')
+        self.jamal= User(username = 'jamal',email = 'jayhamo22@gmail.com')
+        self.jamal = Profile(user = Self.jamal,user = 1,Bio = 'tests',photo = 'test.jpg',date_craeted='oct,26.2021')
 
     def test_instance(self):
-        self.assertTrue(isinstance(self.benard,Profile))
+        self.assertTrue(isinstance(self.jamal,Profile))
 
     def test_save_profile(self):
         Profile.save_profile(self)
@@ -25,7 +25,7 @@ class ProfileTest(TestCase):
 
 class ProjectsTestCase(TestCase):
     def setUp(self):
-        self.new_post = Projects(title = 'testT',projectscreenshot = 'test.jpg',description = 'testD',user = peris,projecturl = 'https://test.com',datecreated='Dec,01.2020')
+        self.new_post = Projects(title = 'sicblog',projectscreenshot = 'sicbolg.jpg',description = 'blogS',user = sicario,projecturl = 'https://test.com',datecreated='Oct,26.2021')
 
 
     def test_save_project(self):
